@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useState, ReactNode, useMemo} from 'react';
 // ur exporting these so u can use them later.
+import products from '@/data/products.json';
 export type CartItem = {
 
     id: string;
@@ -13,11 +14,14 @@ export type CartItem = {
 //actions that can be takes
 // public api exposed by the context
 type CartContextType = {
+    //items is an array of CartItem Objects
     items: CartItem[];
     addItem:(item: Omit<CartItem, 'quantity'>& { quantity?: number }) => void;
     removeItem:(id:string) => void;
     updateQuantity:(id:string, quantity:number) => void;
     clear:() => void;
+    // cartItems is and array of Cart items
+    reduceStock:(cartItems: CartItem[])=> void;
     total:number;
 };
 // Conext 
@@ -44,6 +48,22 @@ export const CartProvider = ({ children }: {children: ReactNode}) =>{
     };
 // remove item by id if the id of the item matches the previous id 
 const removeItem = (id: string) => setItems(prev=> prev.filter(i => i.id !== id));
+const reduceStock = (cartItems: CartItem[]) => {
+    cartItems.forEach(cartItem =>{
+    const product = products.find(p=>p.id === cartItem.id);
+    if (product){
+        product.stock = Math.max(0,product.stock  - cartItem.quantity);
+        console.log(`Updated ${product.title} stock to ${product.stock}`);
+
+    } else{
+              console.log(`No product found with id ${cartItem.id}`);
+
+    }
+});
+console.log('Products after checkout:', products)
+    // logic to reduce stock of item if it matches the id execute wats after ternary operator which is stock - quantity chosen if not jst return the item exactly as it is
+
+};
 const updateQuantity = (id:string, quantity:number) => 
     setItems (prev =>  prev.map(i=>(i.id ===id ? {...i, quantity} : i)).filter(i => i.quantity > 0));
 //return new array where the matching item is replaced by a shallow copy with quantity set to the new value coz ur updating from 5 to 4
@@ -51,7 +71,7 @@ const updateQuantity = (id:string, quantity:number) =>
 const clear = () => setItems([]);
 const total = useMemo(() => items.reduce((s, it)=> s + it.price * it.quantity, 0), [items]);
     return (
-        <CartContext.Provider value={{ items, addItem, removeItem, updateQuantity, clear: clear, total}}>
+        <CartContext.Provider value={{ items, addItem, removeItem, updateQuantity, reduceStock, clear: clear, total}}>
             {children}
         </CartContext.Provider>
     );

@@ -1,58 +1,78 @@
 import CreateCard from '@/components/ui/Cards';
-import { Platform, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native';
-import React from 'react';
+import products from '@/data/oil.json';
+import { useRouter } from 'expo-router';
+import React, {useEffect, useState} from 'react';
+import CreateCardImage from '@/components/ui/Cardimage';
+import { Platform, StyleSheet, View,Text } from 'react-native';
+interface ProductSize {
+  size: string;
+  price: number;
+  stock: number;
+}
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  cover: string;
+  sizes:ProductSize[]
+}
+const OilDetailsScreen  = () => {
+    const router = useRouter();
+    const [cardData, setCardData] = useState<Product[]>([]);
+    useEffect(() => {
+      setCardData(products);
+    }, []);
+     
+    return (
+        <ScrollView  contentContainerStyle={styles.scrollContainer}
+                  showsVerticalScrollIndicator={false}>
+           
+          
+            {/* Grid of Cards */}
+            <View style = {styles.gridContainer}>
+              {cardData.map((item)=>(
+                <View key ={item.id} style={styles.cardWrapper}>
+                     
+                  <CreateCardImage
+                    title = {item.name}
+                    cover = {item.cover}
+                    sizes = {item.sizes}
+              />
+              
+            </View>
+          ))}
+            </View>
+         </ScrollView>
+            );
+}
 
-const OilDetailsScreen = () => (
-    <ScrollView  contentContainerStyle={styles.scrollContainer}
-                   showsVerticalScrollIndicator={false}>
-
-          <CreateCard
-          title="1st Oil Category"
-          description="Sunseed oil categories"
-          cover="https://ug.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/30/742151/1.jpg?0512"
-           />
-          <CreateCard
-          title="2nd Oil Category"
-          description="Roki oil categories"
-          cover="https://pictures-uganda.jijistatic.com/22136536_MzAwLTQwMC01YzE0MzQ0ZDcy.webp"
-           />
-          <CreateCard
-          title="3rd Oil Category"
-            description=" soyseed Cooking oil categrories"
-            cover="https://ug.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/01/6078802/1.jpg?2578"
-            />
-</ScrollView>
-);
 export default OilDetailsScreen;
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: '100%',
-    width: '100%',
-    bottom: 0,
-    left: 0,
-    top: 0,
-    position: 'absolute',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   scrollContainer: {
     paddingVertical: 16,
     alignItems: 'center',
     flexDirection: 'column',
   },
+  gridContainer: {
+    flexDirection: 'row', // Arranges children horizontally (left to right)
+    flexWrap: 'wrap', // Allows items to wrap to next row when they dont fit
+    justifyContent:'space-between', // Distributes items evenly with space between the
+    paddingHorizontal: 16,// ad
+    width: '90%',// take full width of parent container 
+    height:'50%'
+  },
+  cardWrapper: {
+    width: '30%', // 3 items per row (30% each with some margin)
+    marginBottom: 16,
+    padding:8,
+    marginVertical:30,
+    marginHorizontal:20
+  },
+  price: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  }
 });
 
 

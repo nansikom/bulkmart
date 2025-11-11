@@ -1,0 +1,34 @@
+[{
+        "id": 6,
+        "name": "3rd Oil Category",
+        "description": "Soyseed cooking oil categories",
+        "cover": "https://ug.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/01/6078802/1.jpg?2578",
+        "sizes": [
+          { "size": "1L", "price": 9100, "stock": 65 },
+          { "size": "3L", "price": 26000, "stock": 40 },
+          { "size": "5L", "price": 40000, "stock": 28 }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "2nd Oil Category",
+        "description": "Roki oil categories",
+        "cover": "https://pictures-uganda.jijistatic.com/22136536_MzAwLTQwMC01YzE0MzQ0ZDcy.webp",
+        "sizes": [
+          { "size": "1L", "price": 8800, "stock": 55 },
+          { "size": "3L", "price": 24000, "stock": 30 },
+          { "size": "5L", "price": 39000, "stock": 20 }
+        ]
+      },
+       {
+        "id": 4,
+        "name": "1st Oil Category",
+        "description": "Sunseed oil categories",
+        "cover": "https://ug.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/30/742151/1.jpg?0512",
+        "sizes": [
+          { "size": "1L", "price": 9000, "stock": 60 },
+          { "size": "3L", "price": 25000, "stock": 35 },
+          { "size": "5L", "price": 39500, "stock": 25 }
+        ]
+      }
+    ]

@@ -1,53 +1,33 @@
 import Hero from '@/components/ui/Circle';
 import Hero2 from '@/components/ui/othercircle';
 import { Platform, StyleSheet, View,Text } from 'react-native';
-import { ScrollView } from 'react-native';
-import React from 'react';
+import { ScrollView  } from 'react-native';
+import React, {useEffect, useState} from 'react';
 import { useRouter } from 'expo-router';
 import { Plus as PlusIcon } from 'lucide-react-native';
 import { Minus as MinusIcon } from 'lucide-react-native';
 import CreateCardImage from '@/components/ui/Cardimage';
+import products from '@/data/products.json';
 
+interface ProductSize {
+  size: string;
+  price: number;
+  stock: number;
+}
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  cover: string;
+  sizes:ProductSize[]
+}
 const SaltProductDetailsScreen = () => {
     const router = useRouter();
-    const cardData = [
-      {
-        title: "Kay salt",
-        description:"Highly quality iodized salt",
-        cover: "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg",
-      },
-      {
-        title: "Kampala salt",
-        description:"Natural rock salts",
-        cover: "https://d6scj24zvfbbo.cloudfront.net/6326288c847382186ffb11779d56045f/200000094-62b7962b7c/crystals-shallow-salt%20-%20Copy%20Compress.jpg?ph=065bd71dad",
-
-        },
-      {
-            title: "Iodized salt",
-            description: "Pure sea salt flakes",
-            cover: "https://m.media-amazon.com/images/I/81VAOKqWIBS.jpg",
- 
-      },
-      {
-            title: "Habari salt",
-            description: "Pink Himalayan salt",
-            cover: "https://d6scj24zvfbbo.cloudfront.net/6326288c847382186ffb11779d56045f/200000094-62b7962b7c/crystals-shallow-salt%20-%20Copy%20Compress.jpg?ph=065bd71dad",
-      },
-      {
-            title: "Katwe Salt",
-            description: "Coarse cooking salt",
-            cover: "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg",
-
-       
-      }, 
-       {
-            title: "Katwe Salt",
-            description: "Coarse cooking salt",
-            cover: "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg",
-
-       
-      }
-    ]
+    const [cardData, setCardData] = useState<Product[]>([]);
+    useEffect(() => {
+      setCardData(products);
+    }, []);
+     
     return (
         <ScrollView  contentContainerStyle={styles.scrollContainer}
                   showsVerticalScrollIndicator={false}>
@@ -55,12 +35,13 @@ const SaltProductDetailsScreen = () => {
           
             {/* Grid of Cards */}
             <View style = {styles.gridContainer}>
-              {cardData.map((item,index)=>(
-                <View key ={index} style={styles.cardWrapper}>
+              {cardData.map((item)=>(
+                <View key ={item.id} style={styles.cardWrapper}>
                      
                   <CreateCardImage
-                    title = {item.title}
-                    cover= {item.cover}
+                    title = {item.name}
+                    cover = {item.cover}
+                    sizes = {item.sizes}
               />
               
             </View>

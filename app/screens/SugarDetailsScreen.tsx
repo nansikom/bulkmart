@@ -2,31 +2,32 @@ import Hero from '@/components/ui/Circle';
 import Hero2 from '@/components/ui/othercircle';
 import { Platform, StyleSheet, View,Text } from 'react-native';
 import { ScrollView } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useRouter } from 'expo-router';
 import { Plus as PlusIcon } from 'lucide-react-native';
 import { Minus as MinusIcon } from 'lucide-react-native';
 import CreateCardImage from '@/components/ui/Cardimage';
+import products from '@/data/sugar.json';
+interface ProductSize {
+  size: string;
+  price: number;
+  stock: number;
+}
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  cover: string;
+  sizes:ProductSize[]
+}
 
 const SugarDetailsScreen = () => {
-    const router = useRouter();
-    const cardData = [
-      {
-          title:"Kakira",
-          description:" Kakira Sugar categories",
-          cover:"https://ug.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/24/60004/1.jpg?1989"
-      },
-      {
-          title:"Mayuge",
-          description:"Mayuge Sweet sugar",
-          cover:"https://www.mpgroupofindustries.com/img/sugar-25kg.jpg"
-        },
-      {
-            title:"Kinyara",
-            description:"Kinyara Sugar",
-            cover:"https://seromaltd.com/wp-content/uploads/2020/01/DkzGl57XoAA-dKx.jpg",
-      },
-    ]
+  const router = useRouter();
+    const [cardData, setCardData] = useState<Product[]>([]);
+    useEffect(() => {
+      setCardData(products);
+    }, []);
+     
     return (
         <ScrollView  contentContainerStyle={styles.scrollContainer}
                   showsVerticalScrollIndicator={false}>
@@ -34,12 +35,13 @@ const SugarDetailsScreen = () => {
           
             {/* Grid of Cards */}
             <View style = {styles.gridContainer}>
-              {cardData.map((item,index)=>(
-                <View key ={index} style={styles.cardWrapper}>
+              {cardData.map((item)=>(
+                <View key ={item.id} style={styles.cardWrapper}>
                      
                   <CreateCardImage
-                    title = {item.title}
-                    cover= {item.cover}
+                    title = {item.name}
+                    cover = {item.cover}
+                    sizes = {item.sizes}
               />
               
             </View>
@@ -48,6 +50,7 @@ const SugarDetailsScreen = () => {
          </ScrollView>
             );
 }
+
 export default SugarDetailsScreen;
 const styles = StyleSheet.create({
   scrollContainer: {
