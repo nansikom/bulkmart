@@ -10,7 +10,6 @@ const SaltDetailsScreen = () => {
     return (
         <ScrollView  contentContainerStyle={styles.scrollContainer}
                    showsVerticalScrollIndicator={false}>
-
           <CreateCard
           title="Iodized  Salt"
           description="Fortified salt for healthy living"
@@ -22,7 +21,6 @@ const SaltDetailsScreen = () => {
           description="Refined, fine salt for everyday use"
           cover= "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg"
           onPress={() => router.push('/screens/saltproductdetailsscreen')}
-
            />
           <CreateCard
             title="Kampala Salt"

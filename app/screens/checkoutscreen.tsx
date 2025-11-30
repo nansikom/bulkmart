@@ -8,8 +8,26 @@ import {useLocalSearchParams, useRouter } from 'expo-router';
 export default function CheckoutScreen() {
     // reads totals from all that it has gathered
     const router = useRouter();
+
     
     const {items, total, updateQuantity, removeItem, clear, reduceStock } = useCart();
+    const handleConfirmPurchase = async () => {
+        try{
+            await reduceStock(items);
+        
+         const totalsSting = total.toString();
+                            router.push({
+                                pathname:'/checkout/shipping',
+                                params:{
+                                    totals: totalsSting,
+                                } as any
+                            })
+                            clear();
+                        } catch (error) {
+                            console.error('Error during checkout:', error);
+                        }
+    };
+
     return (
         <View style ={styles.container}>
             <FlatList
@@ -24,36 +42,20 @@ export default function CheckoutScreen() {
                         <Button title="+" onPress={() => updateQuantity(item.id, item.quantity + 1)} />
                         <Button title="-" onPress={() => updateQuantity(item.id, item.quantity - 1)} />
                         <Button title="Remove" onPress={() => removeItem(item.id)} />
-                        <Button title= "Confirm Purchase" onPress={()=> {const updatedStock = reduceStock(items);
-                            clear();
-                            alert('Thanks for your purchase!')
-                        }}
-                        />
                                  
                     </View>   
                 </View>
                  )}
             />
-             <ThemedText style={styles.title}> Choose Payement type </ThemedText>
-             <View style ={styles.iconRow}>
-                <Pressable onPress={() => router.push('/screens/payementscreen')}>
-                <Image source={require('@/assets/images/app.png')} style={styles.icon} />
-                </Pressable>
-                <Pressable onPress={() => router.push('/screens/payementscreen')}>
+             <ThemedText style={styles.title}> Click Button Below to Provide Payement Information </ThemedText>
+            <Button title="Confirm Purchase" onPress={handleConfirmPurchase} />
+            <Button title="Proceed to Payment" onPress={() => router.push('/screens/payementscreen')} />
 
-                <Image source={require('@/assets/images/paypal.png')} style={styles.icon} />
-                </Pressable>
-                <Pressable onPress={() => router.push('/screens/payementscreen')}>
-
-                <Image source={require('@/assets/images/visa.png')} style={styles.icon} />
-                </Pressable>
-                </View>
 
             <Text style={styles.total}> Total: UGX {total.toLocaleString()}</Text>
                 <Button title="Clear Cart" onPress={() => clear()} />
-
-                 
-        </View>
+            </View>
+        
     );
 }
 const styles =  StyleSheet.create({

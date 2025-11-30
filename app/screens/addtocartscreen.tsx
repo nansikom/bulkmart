@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import {useLocalSearchParams, useRouter } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import {View, Text, FlatList, StyleSheet,TouchableOpacity, Button,Pressable, Image} from 'react-native';
-
-
-
 const AddToCartScreen = () => {
     const router = useRouter();
     // Get the parameters passed from the previous screen
@@ -62,20 +59,7 @@ const AddToCartScreen = () => {
                 </TouchableOpacity>
             
             </View>
-            <ThemedText style={styles.title}> Choose Payement type </ThemedText>
-                         <View style ={styles.iconRow}>
-                            <Pressable onPress={() => router.push('/screens/payementscreen')}>
-                            <Image source={require('@/assets/images/app.png')} style={styles.icon} />
-                            </Pressable>
-                            <Pressable onPress={() => router.push('/screens/payementscreen')}>
-            
-                            <Image source={require('@/assets/images/paypal.png')} style={styles.icon} />
-                            </Pressable>
-                            <Pressable onPress={() => router.push('/screens/payementscreen')}>
-            
-                            <Image source={require('@/assets/images/visa.png')} style={styles.icon} />
-                            </Pressable>
-                            </View>
+          
             
             <Text style ={styles.priceValue}>TOTAL PRICE UGX {parseInt(formattedTotal as string).toLocaleString()}</Text>
 

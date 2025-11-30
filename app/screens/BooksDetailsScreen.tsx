@@ -6,7 +6,6 @@ import React from 'react';
 const BooksDetailsScreen = () => (
     <ScrollView  contentContainerStyle={styles.scrollContainer}
                    showsVerticalScrollIndicator={false}>
-
           <CreateCard
           title="Salt"
           description="Salt categories"

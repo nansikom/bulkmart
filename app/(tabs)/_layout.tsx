@@ -2,7 +2,7 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 import { CartProvider } from '@/components/CartContents';
 
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -14,20 +14,22 @@ export default function TabLayout() {
 
   return (
     <CartProvider>
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+      <View style={{ flex: 1, backgroundColor: '#1e1e76' }} >
+        <Tabs
+          screenOptions={{
+            tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+            headerShown: false,
+            tabBarButton: HapticTab,
+            tabBarBackground: TabBarBackground,
+            tabBarStyle: Platform.select({
+              ios: {
+                // Use a transparent background on iOS to show the blur effect
+                position: 'absolute',
+              },
+              default: {},
+            }),
+            contentStyle: { backgroundColor: '#691d6dff' },
+          }}>
       <Tabs.Screen
         name="index"
         options={{
@@ -36,7 +38,8 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
-    </CartProvider>
+  </View>
+  </CartProvider>
   );
 }
 // Wrap the whole tab layout with the CartProvider so every screen can access the cart.

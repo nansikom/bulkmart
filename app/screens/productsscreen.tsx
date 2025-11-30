@@ -15,32 +15,26 @@ const SaltProductDetailsScreen = () => {
       {
         title: "Salt Products Category",
         description:"Highly quality iodized salt",
-        cover: "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg",
+        cover: require('../../assets/images/realcoversa.png'),
+
         onPress:() => router.push('/screens/saltproductdetailsscreen'),
-
-
       },
       {
         title: "Sugar Category",
         description:"Natural rock salts",
-        cover: "https://d6scj24zvfbbo.cloudfront.net/6326288c847382186ffb11779d56045f/200000094-62b7962b7c/crystals-shallow-salt%20-%20Copy%20Compress.jpg?ph=065bd71dad",
         onPress:() => router.push('/screens/SugarDetailsScreen'),
-
         },
-
       {
             title: "Soap Category",
             description: "Pure sea salt flakes",
             cover: "https://m.media-amazon.com/images/I/81VAOKqWIBS.jpg",
             onPress:() => router.push('/screens/SoapDetailsScreen'),
-
       },
       {
             title: "Oil",
-            description: "Pink Himalayan salt",
-            cover: "https://keshwalagroup.com/wp-content/uploads/2023/03/96.jpg",
+            description: "Cooking oil categories",
+            cover: require('../../assets/images/oilwes.png'),
             onPress:() => router.push('/screens/OilDetailsScreen'),
-
       },
       {
             title: "Scholastic materials",

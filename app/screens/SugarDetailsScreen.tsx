@@ -7,7 +7,6 @@ import { useRouter } from 'expo-router';
 import { Plus as PlusIcon } from 'lucide-react-native';
 import { Minus as MinusIcon } from 'lucide-react-native';
 import CreateCardImage from '@/components/ui/Cardimage';
-import products from '@/data/sugar.json';
 interface ProductSize {
   size: string;
   price: number;
@@ -24,9 +23,24 @@ interface Product {
 const SugarDetailsScreen = () => {
   const router = useRouter();
     const [cardData, setCardData] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
-      setCardData(products);
-    }, []);
+       const fetchProducts = async () => {
+      try {
+         const response = await fetch('http://localhost:5000/products/category/Sugar');
+         const data = await response.json();
+         //this is where we set the fetched data to state
+         setCardData(data)
+         console.log('Fetched products:', data);
+         
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
+    }
+};
+fetchProducts();
+}, []);
      
     return (
         <ScrollView  contentContainerStyle={styles.scrollContainer}
@@ -42,6 +56,7 @@ const SugarDetailsScreen = () => {
                     title = {item.name}
                     cover = {item.cover}
                     sizes = {item.sizes}
+                    productId={item.id}
               />
               
             </View>
