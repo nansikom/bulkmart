@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "name": "Kay Salt",
+    "description": "Highly quality iodized salt",
+    "cover": "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg",
+    "sizes": [
+      { "size": "1kg", "price": 10000, "stock": 50 },
+      { "size": "2.5kg", "price": 20000, "stock": 30 },
+      { "size": "sackets", "price": 300, "stock": 200 }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Kampala Salt",
+    "description": "Natural rock salts",
+    "cover": "https://d6scj24zvfbbo.cloudfront.net/6326288c847382186ffb11779d56045f/200000094-62b7962b7c/crystals-shallow-salt%20-%20Copy%20Compress.jpg?ph=065bd71dad",
+    "sizes": [
+      { "size": "1kg", "price": 11000, "stock": 40 },
+      { "size": "2.5kg", "price": 22000, "stock": 25 },
+      { "size": "sackets", "price": 320, "stock": 180 }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Iodized Salt",
+    "description": "Pure sea salt flakes",
+    "cover": "https://m.media-amazon.com/images/I/81VAOKqWIBS.jpg",
+    "sizes": [
+      { "size": "1kg", "price": 12000, "stock": 60 },
+      { "size": "2.5kg", "price": 24000, "stock": 35 },
+      { "size": "sackets", "price": 340, "stock": 220 }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Habari Salt",
+    "description": "Pink Himalayan salt",
+    "cover": "https://d6scj24zvfbbo.cloudfront.net/6326288c847382186ffb11779d56045f/200000094-62b7962b7c/crystals-shallow-salt%20-%20Copy%20Compress.jpg?ph=065bd71dad",
+    "sizes": [
+      { "size": "1kg", "price": 11500, "stock": 45 },
+      { "size": "2.5kg", "price": 23000, "stock": 32 },
+      { "size": "sackets", "price": 310, "stock": 210 }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Katwe Salt",
+    "description": "Coarse cooking salt",
+    "cover": "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg",
+    "sizes": [
+      { "size": "1kg", "price": 9500, "stock": 55 },
+      { "size": "2.5kg", "price": 19000, "stock": 28 },
+      { "size": "sackets", "price": 290, "stock": 190 }
+    ]
+  }
+]
+
+ 
