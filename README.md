@@ -13,7 +13,10 @@ Amazon clone
    ```
 
 2. Start the app
-npm run start
+  ```bash
+   npm run start
+   ```
+
 This project runs concurrently with both the front and backend working in sync monitored by root ReactNativeProject
 
 4 To check database run psql -U postgres -d --your database
