@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "name": "ecommerce-fullstack",
+  "private": true,
+  "scripts": {
+    "start:backend": "cd ecommerce-backend && npm install && npm run dev",
+    "start:frontend": "cd MyApp && npx expo start --tunnel --clear",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  }
+}
