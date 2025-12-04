@@ -1,9 +1,7 @@
-import { style } from '@mui/system';
-import React, {useState} from 'react';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card } from 'react-native-paper';
-import {useRouter} from 'expo-router';
-import {View, Text, Pressable,TextInput,Platform, TouchableOpacity,Button,Switch, StyleSheet, Alert, ScrollView} from 'react-native';
-import {useLocalSearchParams } from 'expo-router';
 export default function LoginScreen() {
     const[firstlastName, setFirstName] = useState('');
     const router = useRouter();
@@ -32,7 +30,7 @@ export default function LoginScreen() {
             <View style={styles.fieldContainer}>
             <Text style= {styles.labels}>Email</Text>
             
-            <TextInput style={styles.input} placeholder="johnbuyer@gmail.com" value={email} onChangeText={setEmail} />
+            <TextInput style={styles.input} placeholder="input email make sure to add buyer or seller based on your role" value={email} onChangeText={setEmail} />
             </View>
             <View style={styles.fieldContainer}>
              <Text style= {styles.labels}>Password</Text>
