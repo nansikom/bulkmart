@@ -47,13 +47,18 @@ const SellerDashboard: React.FC = () => {
         <View style={{ height: 20}} />
 
         {/* Table to display the analytics data */}
+        <View style={styles.TableBorder} >
         <DataTable>
-            <DataTable.Header>
-                <DataTable.Title>Product Name</DataTable.Title>
-                <DataTable.Title numeric>Total Quantity Sold</DataTable.Title>
-                <DataTable.Title numeric>Total Revenue</DataTable.Title>
+            <DataTable.Header style={{backgroundColor:'#5440b8ff'}}>
+                <DataTable.Title>
+              <Text style={styles.headerTitle}>Product Name</Text>  </DataTable.Title>
+                <DataTable.Title numeric>
+              <Text style={styles.headerTitle}>Total Quantity Sold</Text>  </DataTable.Title>
+                <DataTable.Title numeric>
+              <Text style={styles.headerTitle}>Total Revenue</Text>  </DataTable.Title>
             </DataTable.Header> 
             {analyticsdata.map((item, index) => (
+                //mapping to extract each item from the analytics data based off their names in the analytics data.
                 <DataTable.Row key={index}>
                     <DataTable.Cell>{item.product_name}</DataTable.Cell>
                     <DataTable.Cell numeric>{item.total_quantity}</DataTable.Cell>
@@ -61,6 +66,7 @@ const SellerDashboard: React.FC = () => {
                 </DataTable.Row>
             ))}
         </DataTable>  
+        </View>
         </ScrollView>
     );
 };
@@ -68,7 +74,7 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         padding:10,
-        backgroundColor:'#f5f5f5',
+        backgroundColor:'white',
     },
     title: {
         fontSize:20,
@@ -76,5 +82,15 @@ const styles = StyleSheet.create({
         marginVertical:10,
         textAlign:'center',
     },
+    headerTitle:{
+        color:'black',
+        fontWeight:'bold',
+    },
+    TableBorder:{
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 8,
+        overflow: 'hidden',
+    }
 });
 export default SellerDashboard;
