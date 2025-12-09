@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BarChart, Bar , XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar , XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import axios from 'axios';
 import { DataTable } from 'react-native-paper';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
@@ -24,6 +24,13 @@ const SellerDashboard: React.FC = () => {
         };
         fetchAnalyticsData();
     }, []);
+     const revenues = analyticsdata.map(item => Number(item.total_revenue));
+     const maxRevenue = Math.max(...revenues);
+     console.log("Max Revenue:", maxRevenue);
+
+     const minRevenue = Math.min(...revenues);
+     console.log("Min Revenue:", minRevenue);
+    const epsilon = 0.01; // Small tolerance for floating-point comparison
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
@@ -37,10 +44,21 @@ const SellerDashboard: React.FC = () => {
             >
                 <XAxis dataKey="product_name" />
                 <YAxis />   
+                //buit in to show the variables on hover over the bar BarChar
                 <Tooltip />
                 <Legend />
                 <Bar dataKey="total_quantity" fill="#8884d8" name="Total Quantity Sold" />
-                <Bar dataKey="total_revenue" fill="#82ca9d" name="Total Revenue" />
+
+                <Bar dataKey="total_revenue"  name="Total Revenue" >
+                    {analyticsdata.map((entry, index) => {
+                        const value = Number(entry.total_revenue);
+                        let color ="blue";
+                        if(Math.abs(value - maxRevenue) < epsilon) color ="green";
+                        else if(Math.abs(value - minRevenue) < epsilon || value == minRevenue) color ="red";
+                        return <Cell key={`cell-${index}`} fill={color} />;
+                    })}
+                </Bar>
+                        
             </BarChart>
         </ResponsiveContainer>
         </View>

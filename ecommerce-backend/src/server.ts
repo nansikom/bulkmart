@@ -1,6 +1,6 @@
-import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import express from 'express';
 import { pool } from './db/index.ts'; // note the .js for ES Modules
 
 dotenv.config();
@@ -80,14 +80,16 @@ app.get("/products/category/:category", async (req, res) => {
 
 app.post("/reduce-stock", async (req, res) => {
   const  cartItems:CartItem[]  = Array.isArray(req.body) ? req.body : req.body.cartItems; // Expecting an array of { id, quantity }
+
   try {
+    const lowStockItems: string[] = [];
     await Promise.all(cartItems.map(async (item:CartItem) => {
       await pool.query(
         'UPDATE products SET stock = GREATEST(stock - $1, 0) WHERE id = $2',
         [item.quantity, item.id]
       );
       // Get product info price and name get the price that matches the selected id
-      const productRes = await pool.query('SELECT name, price FROM products WHERE id = $1', [item.id]);
+      const productRes = await pool.query('SELECT name, stock, price FROM products WHERE id = $1', [item.id]);
       const product = productRes.rows[0];
 
       // 3. Insert into sales
@@ -96,10 +98,13 @@ app.post("/reduce-stock", async (req, res) => {
         'INSERT INTO sales (product_id, product_name, quantity_sold, total_price, sold_at) VALUES ($1, $2, $3, $4, $5)',
         [item.id, product.name, item.quantity, totalPrice, new Date()]
       );
-      
-     
+      if (product.stock < 8){
+        const msg = `${product.name} (ID: ${item.id}) - Stock left: ${product.stock}`;
+        console.warn("⚠️ Low stock alert:", msg);
+        lowStockItems.push(msg);
+      } 
     }));
-    return res.json({ success: true });
+    return res.json({ success: true, lowStockItems });
   } catch (err:any) {
     console.error(err);
     res.status(500).json({success: false, error: 'Error reducing stock', details: err.message });
