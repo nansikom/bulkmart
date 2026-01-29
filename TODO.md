@@ -1,0 +1,6 @@
+- [ ] Add state for user role (buyer/seller)
+- [ ] Add UI elements for role selection (Buyer/Seller buttons)
+- [ ] Update handleLogin function to route based on selected role
+- [ ] Remove hardcoded email checks (email.includes)
+- [ ] Update email input placeholder to generic text
+- [ ] Enhance form styling for beauty (gradients, shadows, better colors, layout)

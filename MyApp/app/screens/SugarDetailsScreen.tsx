@@ -52,22 +52,19 @@ fetchProducts();
             {/* Grid of Cards */}
             <View style = {styles.gridContainer}>
               {cardData.map((item)=>(
-                <View key ={item.id} style={styles.cardWrapper}>
-                     
+                <View key ={item.id} style={styles.cardWrapper}>  
                   <CreateCardImage
                     title = {item.name}
                     cover = {item.cover}
                     sizes = {item.sizes}
                     productId={item.id}
               />
-              
             </View>
           ))}
             </View>
          </ScrollView>
             );
 }
-
 export default SugarDetailsScreen;
 const styles = StyleSheet.create({
   scrollContainer: {

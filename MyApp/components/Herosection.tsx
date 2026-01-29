@@ -1,9 +1,7 @@
-import { Image } from 'expo-image';
-import { StyleSheet, TouchableOpacity, View,ScrollView } from 'react-native';
+import Container from '@/components/Container';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 import { useRouter } from 'expo-router';
-import  Container from '@/components/Container';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 
 
 export default function HeroSection() {
@@ -105,24 +103,30 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   primaryButton: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#4f46e5',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 25,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
   secondaryButton: {
-    borderWidth: 1,
-    borderColor: '#007AFF',
+    borderWidth: 2,
+    borderColor: '#4f46e5',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 25,
+    backgroundColor: 'white',
   },
   buttonText: {
     color: 'white',
     fontWeight: '600',
   },
   secondaryButtonText: {
-    color: '#007AFF',
+    color: '#4f46e5',
     fontWeight: '600',
   },
   featuresContainer: {

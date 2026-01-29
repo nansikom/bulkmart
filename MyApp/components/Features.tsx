@@ -1,8 +1,7 @@
-import { StyleSheet, TouchableOpacity, View,ScrollView } from 'react-native';
+import Container from '@/components/Container';
 import { ThemedText } from '@/components/ThemedText';
 import { useRouter } from 'expo-router';
-import { Text, useColorScheme } from 'react-native';
-import  Container from '@/components/Container';
+import { StyleSheet, TouchableOpacity, useColorScheme, View } from 'react-native';
 export default function Features() {
     const router = useRouter();
     const colorScheme = useColorScheme();
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
       featuresSectionTitle: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: 'white',
+        color: '#4f46e5',
         marginBottom: 16,
       },
       featuresSectionDesc: {
@@ -101,6 +100,11 @@ const styles = StyleSheet.create({
         flex: 1,
         minWidth: 200,
         marginRight:20,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
       },
       featureCardTitle: {
         fontSize: 20,

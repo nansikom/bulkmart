@@ -8,10 +8,11 @@ export default function LoginScreen() {
     const [email, setEmail] = useState("");
     const [hoveered, setHovered] = useState(false);
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("buyer"); // Default to buyer
     const handleLogin = () => {
-        if (email.includes("buyer")){
-            router.push('screens/buyerscreen');
-        } else if (email.includes("seller")){
+        if (role === "buyer"){
+            router.push('/screens/buyerscreen');
+        } else if (role === "seller"){
             router.replace("/screens/sellerdashboard");
         }
 };
@@ -30,15 +31,26 @@ export default function LoginScreen() {
             <View style={styles.fieldContainer}>
             <Text style= {styles.labels}>Email</Text>
             
-            <TextInput style={styles.input} placeholder="input email make sure to add buyer or seller based on your role" value={email} onChangeText={setEmail} />
+            <TextInput style={styles.input} placeholder="Enter your email" value={email} onChangeText={setEmail} />
             </View>
             <View style={styles.fieldContainer}>
              <Text style= {styles.labels}>Password</Text>
-            
+
             <TextInput style={styles.input} placeholder="1234" value={password} onChangeText={setPassword} />
              </View>
-             
-            <Pressable onPress={handleLogin} 
+            <View style={styles.fieldContainer}>
+             <Text style= {styles.labels}>Role</Text>
+             <View style={styles.roleContainer}>
+                 <Pressable onPress={() => setRole("buyer")} style={[styles.roleButton, role === "buyer" && styles.selectedRole]}>
+                     <Text style={[styles.roleText, role === "buyer" && styles.selectedRoleText]}>Buyer</Text>
+                 </Pressable>
+                 <Pressable onPress={() => setRole("seller")} style={[styles.roleButton, role === "seller" && styles.selectedRole]}>
+                     <Text style={[styles.roleText, role === "seller" && styles.selectedRoleText]}>Seller</Text>
+                 </Pressable>
+             </View>
+             </View>
+
+            <Pressable onPress={handleLogin}
             onHoverIn={() => Platform.OS==='web' && setHovered(true)}
             onHoverOut={() => Platform.OS==='web' && setHovered(false)} 
             style={{
@@ -76,13 +88,18 @@ const styles = StyleSheet.create({
         
     },
     input:{
-        borderWidth: 1,
-        borderColor:'#ccc',
-        borderRadius: 10,
+        borderWidth: 2,
+        borderColor:'#4f46e5',
+        borderRadius: 15,
         padding:15,
         marginTop:5,
         backgroundColor:'white',
-        width:'70%'
+        width:'70%',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3,
     },
     switchContainer:{
         flexDirection: 'row',
@@ -101,8 +118,13 @@ const styles = StyleSheet.create({
         borderRadius:8,
         alignSelf: 'center', // Center the card
         width: '60%',
-        backgroundColor:'#707ff5',
-        alignSelf:'center'
+        backgroundColor:'white',
+        alignSelf:'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        elevation: 5,
     },
     buttonText:{
       color:'white',
@@ -117,10 +139,41 @@ const styles = StyleSheet.create({
       marginTop:30,
       backgroundColor:'#4f46e5',
       paddingVertical:15,
-      borderRadius:12,
+      borderRadius:25,
       alignItems:'center',
-      width:'40%'
-    },   
+      width:'40%',
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.2,
+      shadowRadius: 4,
+      elevation: 3,
+    },
+    roleContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '70%',
+        marginTop: 5,
+    },
+    roleButton: {
+        backgroundColor: '#e0e0e0',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+    },
+    selectedRole: {
+        backgroundColor: '#4f46e5',
+        borderColor: '#4f46e5',
+    },
+    roleText: {
+        fontSize: 16,
+        color: '#333',
+        fontFamily: 'Inter',
+    },
+    selectedRoleText: {
+        color: 'white',
+    },
 });
     
 

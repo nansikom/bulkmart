@@ -61,7 +61,7 @@ const reduceStock = async (cartItems: CartItem[]) => {
             body: JSON.stringify(cartItems.map(item => {
                 const numericId = parseInt(item.id.split('-')[0]); // Extract numeric ID
                 console.log(`Converting ${item.id} to numeric ID: ${numericId}`);
-                return{
+                return{ 
                     id: numericId,
                     quantity: item.quantity
                 };

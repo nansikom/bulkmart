@@ -23,6 +23,7 @@ app.get("/", async (req, res) => {
 });
 app.get("/products", async (req, res) => {
   try {
+    //if someone calls the /products api end point it will try to run this sql query
     const result = await pool.query('SELECT * FROM products');
     res.send(result.rows);
   } catch (err) {
@@ -76,8 +77,6 @@ app.get("/products/category/:category", async (req, res) => {
     res.status(500).send('Database error');
   }
 });
-
-
 app.post("/reduce-stock", async (req, res) => {
   const  cartItems:CartItem[]  = Array.isArray(req.body) ? req.body : req.body.cartItems; // Expecting an array of { id, quantity }
 
@@ -110,15 +109,11 @@ app.post("/reduce-stock", async (req, res) => {
     res.status(500).json({success: false, error: 'Error reducing stock', details: err.message });
   }
 });
-
-
 // Reduce stock endpoint given by the id and quantity
-
 app.get("/analytics/top-products", async (req, res) => {
   try {
     //query to get the id ,name, quantity sold and total revenue of top 10 products grouped by id and name based on top most quantity sold
     const result = await pool.query(`
-      
       SELECT product_id, product_name, SUM(quantity_sold) AS total_quantity,
               SUM(total_price) AS total_revenue
       FROM sales
@@ -127,7 +122,7 @@ app.get("/analytics/top-products", async (req, res) => {
       LIMIT 10
     `);
     res.json(result.rows);
-  } catch (err) {
+  } catch (err){
     console.error(err);
     res.status(500).send('Database error');
   }
