@@ -13,15 +13,15 @@ const CreateCard: React.FC<CreateCardProps> = ({ title, description, cover, onPr
  
   return (
     <Card style={[styles.container, {backgroundColor: theme.colors.surface, shadowColor: theme.colors.backdrop}]} onPress={onPress}>
+       <Card.Content style ={styles.content}>
+        <Text variant="titleLarge" style={styles.title}>{title}</Text>
+        <Text variant="bodyMedium" style={styles.description}>{description}</Text>
+      </Card.Content>
       <Card.Cover
         source={typeof cover === 'string' ? { uri: cover } : cover}
         style={{width:"100%",height:400}}
         resizeMode='cover'
       />
-      <Card.Content style ={styles.content}>
-        <Text variant="titleLarge" style={styles.title}>{title}</Text>
-        <Text variant="bodyMedium" style={styles.description}>{description}</Text>
-      </Card.Content>
       <Card.Actions style={styles.actions}>
         <Button style={styles.button} mode="contained" buttonColor={theme.colors.primary} textColor="#fff" onPress={onPress}>
           Click for Products

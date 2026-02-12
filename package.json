@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start:backend": "cd ecommerce-backend && npm install && npm run dev",
-    "start:frontend": "cd MyApp && npx expo start --tunnel --clear",
+    "start:frontend": "cd MyApp && npx expo --tunnel",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
   }
 }

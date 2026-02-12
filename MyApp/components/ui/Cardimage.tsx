@@ -25,7 +25,7 @@ interface Product {
   sizes:ProductSize[]
 }
 
-const CreateCardImage: React.FC<CreateCardProps> = ({ title,cover,sizes,id,onPress }) => {
+const CreateCardImage: React.FC<CreateCardProps> = ({ title,cover,sizes, id, onPress }) => {
   const router = useRouter();
   const theme = useTheme();
   
@@ -74,13 +74,16 @@ const CreateCardImage: React.FC<CreateCardProps> = ({ title,cover,sizes,id,onPre
   
   return (
       <Card style={[styles.container, {backgroundColor: theme.colors.surface, shadowColor: theme.colors.backdrop}]} onPress={onPress}>
+        <Card.Content style ={styles.content}>
+                <Text variant="titleLarge" style={styles.title}>{title}</Text>
+          </Card.Content>
        <Card.Cover
                source={typeof cover === 'string' ? { uri: cover } : cover}
                style={styles.cover}
                resizeMode='cover'
              /> 
-         <Card.Content style ={styles.content}>
-                <Text variant="titleLarge" style={styles.title}>{title}</Text>
+         
+          <Card.Content>
               <Text style ={styles.price}>
                 UGX {currentPrice.toLocaleString()}
               </Text>

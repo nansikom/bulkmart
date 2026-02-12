@@ -46,12 +46,12 @@ export default function HeroSection() {
               <ThemedText style={styles.featureDesc}>🤝Fair Deals Every Buyer</ThemedText>
             </View>
             <View style={styles.featureItem}>
-              <ThemedText style={styles.featureTitle}>🏃‍♂️Fastest on the market</ThemedText>
-              <ThemedText style={styles.featureDesc}>Speed That Delivers</ThemedText>
+              <ThemedText style={styles.featureTitle}>Fastest on the market</ThemedText>
+              <ThemedText style={styles.featureDesc}>🏃Speed That Delivers</ThemedText>
             </View>
             <View style={styles.featureItem}>
-              <ThemedText style={styles.featureTitle}>❤️Buy from The most loved</ThemedText>
-              <ThemedText style={styles.featureDesc}>Trusted for Quality</ThemedText>
+              <ThemedText style={styles.featureTitle}>Buy from The most loved</ThemedText>
+              <ThemedText style={styles.featureDesc}>❤️Trusted for Quality</ThemedText>
             </View>
           </View>
         </View>
@@ -148,6 +148,8 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 8,
     color: 'white',
+    //ensures all titles take up to the same amount of space to align the descriptions below them.
+    minHeight: 50,
   },
   featureDesc: {
     fontSize: 14,

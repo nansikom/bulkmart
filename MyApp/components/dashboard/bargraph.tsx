@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import { BarChart, Bar , XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+// we got this table from react native paper.
 import { DataTable } from 'react-native-paper';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { Bar, BarChart, Cell, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 //screens for seller dashboard with bar graph and table showing top selling products analytics
 interface AnalyticsItem{
     product_id: number;
@@ -15,7 +16,9 @@ const SellerDashboard: React.FC = () => {
     useEffect(() => {
         const fetchAnalyticsData = async () => {
             try {
-                const response = await axios.get<AnalyticsItem[]>('http://localhost:5000/analytics/top-products');
+                //data is passed in through the api endpoint /analytics/top-products
+                const response = await axios.get<AnalyticsItem[]>('http://localhost:5000/analytics/top-prodruoucts');
+                // pass the data through the set method.
                 setanalyticsData(response.data);
                 console.log('Fetched analytics data:', response.data);
             } catch (error) {
@@ -75,6 +78,7 @@ const SellerDashboard: React.FC = () => {
                 <DataTable.Title numeric>
               <Text style={styles.headerTitle}>Total Revenue</Text>  </DataTable.Title>
             </DataTable.Header> 
+           
             {analyticsdata.map((item, index) => (
                 //mapping to extract each item from the analytics data based off their names in the analytics data.
                 <DataTable.Row key={index}>

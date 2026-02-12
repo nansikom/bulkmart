@@ -15,37 +15,37 @@ const SaltProductDetailsScreen = () => {
     const router = useRouter();
     const cardData = [
       {
-        title: "Salt Products Category",
+        title: "Salt Products Types",
         description:"Highly quality iodized salt",
         cover: "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg",
         onPress:() => router.push('/screens/saltproductdetailsscreen'),
       },
       {
-        title: "Sugar Category",
+        title: "Sugar Products Types",
         description:"Natural rock salts",
         onPress:() => router.push('/screens/SugarDetailsScreen'),
         cover: "https://ug.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/24/60004/1.jpg?1989"
         },
       {
-            title: "Soap Category",
+            title: "Soap Products Types",
             description: "Pure sea salt flakes",
             cover: "https://europeansoaps.com/cdn/shop/products/612082761894_16.jpg?v=1666984536",
             onPress:() => router.push('/screens/SoapDetailsScreen'),
       },
       {
-            title: "Oil",
+            title: "Oil Products Types",
             description: "Cooking oil categories",
             cover: require('../../assets/images/oilwes.png'),
             onPress:() => router.push('/screens/OilDetailsScreen'),
       },
       {
-            title: "Scholastic materials",
+            title: "Scholastic materials Types",
             description: "Coarse cooking salt",
             cover: "https://www.bcanet.org.uk/images/our-focus/education/5.png",
             onPress:() => router.push('/screens/BooksDetailsScreen'),
        
       },{
-            title: "Water",
+            title: "Water Types",
             description: "Fine table salt",
             cover: "https://c8.alamy.com/comp/RD6546/large-stacks-of-bottles-of-water-in-plastic-bottles-for-sale-in-costco-wholesale-RD6546.jpg"
        
@@ -60,7 +60,6 @@ const SaltProductDetailsScreen = () => {
             <View style = {styles.gridContainer}>
               {cardData.map((item,index)=>(
                 <View key ={index} style={styles.cardWrapper}>
-                  <Text>Card {index}: {item.title}</Text>
                   <Card
                     title = {item.title}
                     description={item.description}

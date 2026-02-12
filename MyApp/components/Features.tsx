@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
       },
       readMore: {
-        color: '#007AFF',
+        color:'#4f46e5',
         fontSize: 14,
       },
 })

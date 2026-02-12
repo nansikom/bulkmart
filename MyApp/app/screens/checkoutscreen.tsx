@@ -11,8 +11,11 @@ export default function CheckoutScreen() {
     const {items, total, updateQuantity, removeItem, clear, reduceStock } = useCart();
     if (items.length ===0) {
      
-            console.log('Your cart is empty. Please add items to proceed to checkout.')
-            return;
+             return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Your cart is empty. Please add items to proceed to checkout.</Text>
+    </View>
+  );
     }
     console.log('==checkout is starting');
     console.log('Items in cart:', items);
@@ -43,7 +46,7 @@ export default function CheckoutScreen() {
     return (
         <View style ={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Your Cart</Text>
+                <Text style={styles.headerTitle}>Your Cart items</Text>
                 <Text style={styles.headerSubtitle}>{items.length} {items.length === 1 ? 'item' : 'items'}</Text>
             </View>
 
@@ -150,11 +153,11 @@ const styles =  StyleSheet.create({
     },
     header: {
         backgroundColor: '#61239bff',
-        paddingTop: 36,
-        paddingBottom: 16,
+        paddingTop: 20,
+        paddingBottom: 10,
         paddingHorizontal: 16,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.15,
@@ -177,20 +180,23 @@ const styles =  StyleSheet.create({
         paddingBottom: 20,
     },
     columnWrapper: {
-        justifyContent: 'space-between',
+        //making sure all items are centered and have space between them
+        justifyContent: 'center',
+        gap: 15,
     },
     itemCard: {
         backgroundColor: '#ffffff',
         borderRadius: 20,
         padding: 16,
         marginBottom: 12,
-        width: '48%',
+        width: '46%',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.08,
         shadowRadius: 8,
         elevation: 3,
         position: 'relative',
+        alignItems: 'center',
     },
     removeButton: {
         position: 'absolute',
@@ -275,7 +281,7 @@ const styles =  StyleSheet.create({
         width: 32,
         height: 32,
         borderRadius: 16,
-        backgroundColor: '#61239bff',
+        backgroundColor: '#691d6dff',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -312,16 +318,19 @@ const styles =  StyleSheet.create({
         paddingTop: 16,
         paddingHorizontal: 16,
         paddingBottom: 20,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: -4 },
         shadowOpacity: 0.1,
         shadowRadius: 12,
         elevation: 10,
+        flexDirection: 'row',
+        gap: 55,
+
     },
     totalContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 12,
@@ -329,6 +338,8 @@ const styles =  StyleSheet.create({
         backgroundColor: '#f8f9fa',
         borderRadius: 12,
         marginBottom: 12,
+        width:'20%',
+        alignSelf: 'center',
     },
     totalLabel: {
         fontSize: 14,
@@ -346,11 +357,14 @@ const styles =  StyleSheet.create({
         borderRadius: 12,
         alignItems: 'center',
         marginBottom: 8,
-        shadowColor: '#61239bff',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
-        elevation: 5,
+        borderWidth: 2,
+        elevation: 8,
+        width: '20%',
+        flexDirection: 'column',
+        borderColor: '#61239bff',
     },
     primaryButtonText: {
         color: '#ffffff',
@@ -358,16 +372,18 @@ const styles =  StyleSheet.create({
         fontWeight: '700',
     },
     secondaryButton: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#61239bff',
         paddingVertical: 12,
         borderRadius: 12,
-        alignItems: 'center',
         marginBottom: 8,
         borderWidth: 2,
         borderColor: '#61239bff',
+        width: '20%',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     secondaryButtonText: {
-        color: '#61239bff',
+        color: '#ffffff',
         fontSize: 15,
         fontWeight: '700',
     },
@@ -376,6 +392,11 @@ const styles =  StyleSheet.create({
         paddingVertical: 10,
         borderRadius: 12,
         alignItems: 'center',
+        width: '80%',
+        width:'20%',
+        alignSelf: 'center',
+        borderColor: '#d63031',
+        borderWidth: 2,
     },
     clearButtonText: {
         color: '#d63031',

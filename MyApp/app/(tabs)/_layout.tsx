@@ -1,6 +1,6 @@
+import { CartProvider } from '@/components/CartContents';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { CartProvider } from '@/components/CartContents';
 
 import { Platform, View } from 'react-native';
 
