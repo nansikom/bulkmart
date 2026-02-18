@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
         padding:10,
         margin:10,
         borderRadius:8,
+        borderWidth: 8,
+        borderColor: 'rgb(117, 68, 164)',
         backgroundColor:'white',
         width: '50%',
         alignSelf: 'center' // Center the card 

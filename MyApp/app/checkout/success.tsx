@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { SearchParams, useRouter, useLocalSearchParams } from 'expo-router';
+import { Card } from 'react-native-paper';
 
 const Success = () => {
     const router = useRouter();
@@ -32,7 +33,6 @@ const Success = () => {
                 <Text>Country: {shipping.country}</Text>
                 <Text>Total Paid: ${totals}</Text>
                 <Text style={styles.sectionTitle}>Total Paid: UGX {totals}</Text>
-
             </View>
             <Button title="Back to Home" onPress={() => router.push('/')} />
         </View>
@@ -66,6 +66,11 @@ const styles = StyleSheet.create({
         padding: 15,
         marginBottom: 20,
         color:'white',
+        borderWidth: 8,
+        borderColor: 'rgb(117, 68, 164)',
+        width: '50%',
+        backgroundColor:'white',
+        height:'40%',
     },
     sectionTitle: {
         fontSize: 18,

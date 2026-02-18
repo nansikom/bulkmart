@@ -86,7 +86,9 @@ const styles = StyleSheet.create({
         borderRadius:8,
         backgroundColor:'white',
         alignSelf: 'center', // Center the card
-        width: '50%'
+        width: '50%',
+        borderWidth: 8,
+        borderColor: 'rgb(117, 68, 164)',
     }
 
 });

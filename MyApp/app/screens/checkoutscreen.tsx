@@ -122,10 +122,10 @@ export default function CheckoutScreen() {
                 </View>
 
                 <TouchableOpacity 
-                    style={styles.primaryButton} 
+                    style={styles.secondaryButton} 
                     onPress={handleConfirmPurchase}
                 >
-                    <Text style={styles.primaryButtonText}>Confirm Purchase</Text>
+                    <Text style={styles.secondaryButtonText}>Confirm Purchase</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
@@ -335,7 +335,7 @@ const styles =  StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 12,
         paddingHorizontal: 12,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: '#F1EED8',
         borderRadius: 12,
         marginBottom: 12,
         width:'20%',
@@ -344,12 +344,12 @@ const styles =  StyleSheet.create({
     totalLabel: {
         fontSize: 14,
         fontWeight: '600',
-        color: '#636e72',
+        color: 'rgb(117, 68, 164)',
     },
     totalValue: {
         fontSize: 20,
         fontWeight: '700',
-        color: '#61239bff',
+        color: 'rgb(117, 68, 164)',
     },
     primaryButton: {
         backgroundColor: '#61239bff',

@@ -1,6 +1,6 @@
-import SaltDetailsScreen from '../screens/SaltDetailsScreen';
 import SugarDetailsScreen from '../screens/SugarDetailsScreen';
 import OilDetailsScreen from '../screens/OilDetailsScreen';
+import SaltProductDetailsScreen from '../screens/saltproductdetailsscreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../(tabs)/index';    
 export type RootStackParamList = {
@@ -16,7 +16,7 @@ export default function AppNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="SaltDetailsScreen" component={SaltDetailsScreen} />
+      <Stack.Screen name="SaltDetailsScreen" component={SaltProductDetailsScreen} />
       <Stack.Screen name="SugarDetailsScreen" component={SugarDetailsScreen} />
       <Stack.Screen name="OilDetailsScreen" component={OilDetailsScreen} />
     </Stack.Navigator>

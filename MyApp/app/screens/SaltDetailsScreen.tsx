@@ -1,68 +1,98 @@
-import CreateCard from '@/components/ui/Cards';
-import { Platform, StyleSheet } from 'react-native';
+import Hero from '@/components/ui/Circle';
+import Hero2 from '@/components/ui/othercircle';
+import { Platform, StyleSheet, View,Text } from 'react-native';
 import { ScrollView } from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useRouter } from 'expo-router';
-// screen utilised materials ui design components
+import { Plus as PlusIcon } from 'lucide-react-native';
+import { Minus as MinusIcon } from 'lucide-react-native';
+import CreateCardImage from '@/components/ui/Cardimage';
+//screen to detail salt products
+interface ProductSize {
+  size: string;
+  price: number;
+  stock: number;
+  id?: number;
+}
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  cover: string;
+  sizes:ProductSize[]
+}
 
-const SaltDetailsScreen = () => {
-    const router = useRouter();
-    
+const SaltProductDetailsScreen = () => {
+  const router = useRouter();
+    const [cardData, setCardData] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+       const fetchProducts = async () => {
+      try {
+         const response = await fetch('http://localhost:5000/products/category/Salt');
+         const data = await response.json();
+         //this is where we set the fetched data to state
+         setCardData(data)
+         console.log('Fetched products:', data);
+         
+    } catch (error) {
+      console.error('Error fetching products:', error); 
+    } finally {
+      setLoading(false);
+    }
+};
+fetchProducts();
+}, []);
+     
     return (
         <ScrollView  contentContainerStyle={styles.scrollContainer}
-                   showsVerticalScrollIndicator={false}>
-          <CreateCard
-          title="Iodized  Salt"
-          description="Fortified salt for healthy living"
-          cover = "https://i5.walmartimages.com/asr/82e4bea9-1168-49fa-8341-c309a1163ca4.2dd8c9eb5f7923d6c11b9754a8bd2e78.jpeg"
-          onPress={() => router.push('/screens/saltproductdetailsscreen')}
-           />
-          <CreateCard
-          title="Kay Salt"
-          description="Refined, fine salt for everyday use"
-          cover= "https://greenspoon.co.ke/wp-content/uploads/2024/07/greenspoon-kaysalt-1-of-1.jpg"
-          onPress={() => router.push('/screens/saltproductdetailsscreen')}
-           />
-          <CreateCard
-            title="Kampala Salt"
-            description="Locally mined, coarse salt"
-            cover = "https://d6scj24zvfbbo.cloudfront.net/6326288c847382186ffb11779d56045f/200000094-62b7962b7c/crystals-shallow-salt%20-%20Copy%20Compress.jpg?ph=065bd71dad"
-            onPress={() => router.push('/screens/saltproductdetailsscreen')}
-            />
-         
-</ScrollView>
-);
+                  showsVerticalScrollIndicator={false}>
+           
+          
+            {/* Grid of Cards */}
+            <View style = {styles.gridContainer}>
+              {cardData.map((item)=>(
+                <View key ={item.id} style={styles.cardWrapper}>
+                     
+                  <CreateCardImage
+                    title = {item.name}
+                    cover = {item.cover}
+                    sizes = {item.sizes}
+                    productId={item.id}
+              />
+              
+            </View>
+          ))}
+            </View>
+         </ScrollView>
+            );
 }
-export default SaltDetailsScreen;
+
+export default SaltProductDetailsScreen;
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: '100%',
-    width: '100%',
-    bottom: 0,
-    left: 0,
-    top: 0,
-    position: 'absolute',
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   scrollContainer: {
     paddingVertical: 16,
     alignItems: 'center',
     flexDirection: 'column',
   },
+  gridContainer: {
+    flexDirection: 'row', // Arranges children horizontally (left to right)
+    flexWrap: 'wrap', // Allows items to wrap to next row when they dont fit
+    justifyContent:'space-between', // Distributes items evenly with space between the
+    paddingHorizontal: 16,// ad
+    width: '90%',// take full width of parent container 
+    height:'50%'
+  },
+  cardWrapper: {
+    width: '30%', // 3 items per row (30% each with some margin)
+    marginBottom: 16,
+    padding:8,
+    marginVertical:30,
+    marginHorizontal:20
+  },
+  price: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  }
 });
-
-
 
