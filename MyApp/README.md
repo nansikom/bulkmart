@@ -6,6 +6,20 @@ Amazon clone
 
 ## Get started
 
+### Environment variables
+
+Create a `.env` file in `MyApp` and set your backend URL:
+
+```bash
+EXPO_PUBLIC_API_URL=https://your-backend-url.com
+```
+
+For local backend development, you can use:
+
+```bash
+EXPO_PUBLIC_API_URL=http://localhost:5000
+```
+
 1. Install dependencies
 
    ```bash

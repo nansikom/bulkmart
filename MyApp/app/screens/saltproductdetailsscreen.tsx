@@ -1,12 +1,8 @@
-import Hero from '@/components/ui/Circle';
-import Hero2 from '@/components/ui/othercircle';
-import { Platform, StyleSheet, View,Text } from 'react-native';
-import { ScrollView } from 'react-native';
-import React, {useEffect, useState} from 'react';
-import { useRouter } from 'expo-router';
-import { Plus as PlusIcon } from 'lucide-react-native';
-import { Minus as MinusIcon } from 'lucide-react-native';
 import CreateCardImage from '@/components/ui/Cardimage';
+import { apiUrl } from '@/lib/api';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
 //screen to detail salt products
 interface ProductSize {
   size: string;
@@ -29,7 +25,7 @@ const SaltProductDetailsScreen = () => {
     useEffect(() => {
        const fetchProducts = async () => {
       try {
-         const response = await fetch('http://localhost:5000/products/category/Salt');
+        const response = await fetch(apiUrl('/products/category/Salt'));
          const data = await response.json();
          //this is where we set the fetched data to state
          setCardData(data)

@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 
 const app = express();
@@ -7,7 +7,7 @@ app.use(express.json());
 
 let requestCount = 0;
 
-app.post("/reduce-stock", (req, res) => {
+app.post("/reduce-stock", (req: Request, res: Response) => {
   requestCount++;
   console.log(`=== Request #${requestCount} to /reduce-stock ===`);
   console.log('Method:', req.method);
@@ -23,7 +23,7 @@ app.post("/reduce-stock", (req, res) => {
   });
 });
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send('Test server is running');
 });
 

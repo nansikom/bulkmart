@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 // we got this table from react native paper.
+import { apiUrl } from '@/lib/api';
 import { DataTable } from 'react-native-paper';
 import { Bar, BarChart, Cell, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 //screens for seller dashboard with bar graph and table showing top selling products analytics
@@ -17,7 +18,7 @@ const SellerDashboard: React.FC = () => {
         const fetchAnalyticsData = async () => {
             try {
                 //data is passed in through the api endpoint /analytics/top-products
-                const response = await axios.get<AnalyticsItem[]>('http://localhost:5000/analytics/top-prodruoucts');
+                const response = await axios.get<AnalyticsItem[]>(apiUrl('/analytics/top-prodruoucts'));
                 // pass the data through the set method.
                 setanalyticsData(response.data);
                 console.log('Fetched analytics data:', response.data);

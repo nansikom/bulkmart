@@ -1,6 +1,6 @@
-import React, {createContext, useContext, useState, ReactNode, useMemo} from 'react';
+import React, { createContext, ReactNode, useContext, useMemo, useState } from 'react';
 // ur exporting these so u can use them later.
-import products from '@/data/products.json';
+import { apiUrl } from '@/lib/api';
 export type CartItem = {
 
     id: string;
@@ -52,7 +52,7 @@ const removeItem = (id: string) => setItems(prev=> prev.filter(i => i.id !== id)
 const reduceStock = async (cartItems: CartItem[]) => {
     try{
         console.log('cart items to send', cartItems);
-        const response = await fetch ('http://localhost:5000/reduce-stock', {
+        const response = await fetch (apiUrl('/reduce-stock'), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,6 +1,6 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { pool } from './db/index.js';
 
 dotenv.config();
@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", async (req, res) => {
+app.get("/", async (req: Request, res: Response) => {
   try {
     const result = await pool.query('SELECT NOW()');
     res.send(`Backend + Postgres is running. Time: ${result.rows[0].now}`);
@@ -21,7 +21,7 @@ app.get("/", async (req, res) => {
     res.status(500).send('Database error');
   }
 });
-app.get("/products", async (req, res) => {
+app.get("/products", async (req: Request, res: Response) => {
   try {
     //if someone calls the /products api end point it will try to run this sql query
     const result = await pool.query('SELECT * FROM products');
@@ -31,7 +31,7 @@ app.get("/products", async (req, res) => {
     res.status(500).send('Database error');
   }
 });
-app.get("/products/:id", async (req, res) => {
+app.get("/products/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const result = await pool.query('SELECT * FROM products WHERE id = $1', [id]);
@@ -44,7 +44,7 @@ app.get("/products/:id", async (req, res) => {
     res.status(500).send('Database error');
   }
 });
-app.get("/products/category/:category", async (req, res) => {
+app.get("/products/category/:category", async (req: Request, res: Response) => {
   const { category } = req.params;
   try {
     const result = await pool.query(`
@@ -77,7 +77,7 @@ app.get("/products/category/:category", async (req, res) => {
     res.status(500).send('Database error');
   }
 });
-app.post("/reduce-stock", async (req, res) => {
+app.post("/reduce-stock", async (req: Request, res: Response) => {
   const  cartItems:CartItem[]  = Array.isArray(req.body) ? req.body : req.body.cartItems; // Expecting an array of { id, quantity }
 
   try {
@@ -110,7 +110,7 @@ app.post("/reduce-stock", async (req, res) => {
   }
 });
 // Reduce stock endpoint given by the id and quantity
-app.get("/analytics/top-products", async (req, res) => {
+app.get("/analytics/top-products", async (req: Request, res: Response) => {
   try {
     //query to get the id ,name, quantity sold and total revenue of top 10 products grouped by id and name based on top most quantity sold
     const result = await pool.query(`
