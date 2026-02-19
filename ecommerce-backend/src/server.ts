@@ -1,7 +1,7 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
-import { pool } from './db/index.ts'; // note the .js for ES Modules
+import { pool } from './db/index.js';
 
 dotenv.config();
 interface CartItem {
